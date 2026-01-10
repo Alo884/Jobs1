@@ -29,6 +29,14 @@
             <label>يوزر ديسكورد</label><br>
             <input type="text" id="discord" required><br><br>
 
+            <!-- إضافة حقل لاختيار الوظيفة -->
+            <label>الوظيفة</label><br>
+            <select id="job" required>
+                <option value="شرطة">شرطة</option>
+                <option value="إسعاف">إسعاف</option>
+                <option value="ميكانيكي">ميكانيكي</option>
+            </select><br><br>
+
             <button class="btn" type="submit">إرسال الطلب</button>
         </form>
     </div>
@@ -38,17 +46,23 @@
 // روابط Webhook لكل وظيفة
 const webhooks = {
     "شرطة": "https://discord.com/api/webhooks/1459598126678540541/mtMYNzTZESPo-W3YYErc30FddgXiAC2jZhjjCDRi-9GtWCAPDYKAYjEhYb8KhJlZPSeZ",
-    "إسعاف": "WEBHOOK_EMS",
-    "ميكانيكي": "WEBHOOK_MECHANIC"
+    "إسعاف": "WEBHOOK_EMS",  // استبدل "WEBHOOK_EMS" برابط Webhook الخاص بك
+    "ميكانيكي": "WEBHOOK_MECHANIC" // استبدل "WEBHOOK_MECHANIC" برابط Webhook الخاص بك
 };
 
 document.getElementById("applyForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
+    // الحصول على الوظيفة من عنصر الـ select
     const job = document.getElementById("job").value;
+
+    // التأكد من أن الوظيفة موجودة في webhooks
+    if (!webhooks[job]) {
+        alert("❌ الوظيفة غير موجودة أو رابط Webhook غير صحيح.");
+        return;
+    }
+
     const data = {
-        // إذا تحب، يمكن تضع منشن للرتبة هنا
-        // content: "<@&ROLE_ADMIN>",
         embeds: [{
             title: "📥 طلب توظيف جديد",
             color: 3447003,
@@ -63,6 +77,7 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
         }]
     };
 
+    // إرسال البيانات إلى Webhook الخاص بالوظيفة المختارة
     fetch(webhooks[job], {
         method: "POST",
         headers: { "Content-Type": "application/json" },
