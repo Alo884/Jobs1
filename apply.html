@@ -1,7 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>التقديم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>تقديم الوظائف</h2>
+</nav>
+
+<header class="hero">
+    <img src="server-logo.png" alt="شعار السيرفر" class="server-logo">
+    <h1>نموذج التقديم</h1>
+    <p>سيتم إرسال طلبك للإدارة مباشرة</p>
+</header>
+
+<section class="jobs">
+    <div class="job-card">
+        <form id="applyForm">
+            <label>الاسم داخل السيرفر</label><br>
+            <input type="text" id="name" required><br><br>
+
+            <label>العمر</label><br>
+            <input type="number" id="age" required><br><br>
+
+            <label>يوزر ديسكورد</label><br>
+            <input type="text" id="discord" required><br><br>
+
+            <!-- إضافة حقل لاختيار الوظيفة -->
+            <label>الوظيفة</label><br>
+            <select id="job" required>
+                <option value="شرطة">شرطة</option>
+                <option value="إسعاف">إسعاف</option>
+                <option value="ميكانيكي">ميكانيكي</option>
+            </select><br><br>
+
+            <button class="btn" type="submit">إرسال الطلب</button>
+        </form>
+    </div>
+</section>
+
+<script>
+// روابط Webhook لكل وظيفة
+const webhooks = {
+    "شرطة":  "https://discord.com/api/webhooks/1459598126678540541/mtMYNzTZESPo-W3YYErc30FddgXiAC2jZhjjCDRi-9GtWCAPDYKAYjEhYb8KhJlZPSeZ",
+    "إسعاف": "https://discord.com/api/webhooks/1459657989534257364/E6Bqf2rg3kWhftSJh3Iuot2w-ZWLgLoLum_6SyDw1GbrLn1SB3PrCtF921L_T73nfSzZ",
+    "ميكانيكي": "WEBHOOK_MECHANIC"  // استبدل "WEBHOOK_MECHANIC" بالرابط الفعلي
+};
+
 document.getElementById("applyForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const job = document.getElementById("job").value;  // تأكد من الحصول على الوظيفة من الـ select
+    const job = document.getElementById("job").value;  // الحصول على الوظيفة
     const data = {
         embeds: [{
             title: "📥 طلب توظيف جديد",
@@ -34,3 +86,7 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
         alert("❌ الوظيفة غير موجودة");
     }
 });
+</script>
+
+</body>
+</html>
