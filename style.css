@@ -94,27 +94,3 @@ footer {
 
 }
 
-/* تنسيق الزر العائم */
-.discord-floating-btn {
-  position: fixed;
-  bottom: 20px; /* المسافة من الأسفل */
-  right: 20px;  /* المسافة من اليمين */
-  background-color: #5865F2;
-  color: white !important;
-  padding: 15px 25px;
-  border-radius: 50px; /* زوايا دائرية بالكامل */
-  text-decoration: none;
-  font-family: sans-serif;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  z-index: 1000; /* لضمان ظهوره فوق كل العناصر */
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: transform 0.3s ease;
-}
-
-.discord-floating-btn:hover {
-  transform: scale(1.1); /* تكبير بسيط عند التمرير */
-  background-color: #4752C4;
-}
