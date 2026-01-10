@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>التقديم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>Server Jobs</h2>
+</nav>
+
+<header class="hero">
+    <img src="server-logo.png" alt="شعار السيرفر" class="server-logo">
+    <h1>نموذج التقديم</h1>
+    <p>سيتم إرسال طلبك للإدارة مباشرة</p>
+</header>
+
+<section class="jobs">
+    <div class="job-card">
+        <form id="applyForm">
+            <label>الاسم داخل السيرفر</label><br>
+            <input type="text" id="name" required><br><br>
+
+            <label>العمر</label><br>
+            <input type="number" id="age" required><br><br>
+
+            <label>يوزر ديسكورد</label><br>
+            <input type="text" id="discord" required><br><br>
+
+            <label>الوظيفة</label><br>
+            <select id="job">
+                <option>شرطة</option>
+                <option>إسعاف</option>
+                <option>ميكانيكي</option>
+            </select><br><br>
+
+            <button class="btn" type="submit">إرسال الطلب</button>
+        </form>
+    </div>
+</section>
+
+<script>
+// روابط Webhook لكل وظيفة
+const webhooks = {
+    "شرطة": "https://discord.com/api/webhooks/1459598126678540541/mtMYNzTZESPo-W3YYErc30FddgXiAC2jZhjjCDRi-9GtWCAPDYKAYjEhYb8KhJlZPSeZ",
+    "إسعاف": "WEBHOOK_EMS",
+    "ميكانيكي": "WEBHOOK_MECHANIC"
+};
+
+document.getElementById("applyForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const job = document.getElementById("job").value;
+    const data = {
+        // إذا تحب، يمكن تضع منشن للرتبة هنا
+        // content: "<@&ROLE_ADMIN>",
+        embeds: [{
+            title: "📥 طلب توظيف جديد",
+            color: 3447003,
+            fields: [
+                { name: "👤 الاسم", value: document.getElementById("name").value, inline: true },
+                { name: "🎂 العمر", value: document.getElementById("age").value, inline: true },
+                { name: "🎮 ديسكورد", value: document.getElementById("discord").value, inline: false },
+                { name: "💼 الوظيفة", value: job, inline: false }
+            ],
+            footer: { text: "Server Jobs System" },
+            timestamp: new Date()
+        }]
+    };
+
+    fetch(webhooks[job], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    }).then(() => {
+        alert("✅ تم إرسال طلبك بنجاح");
+        document.getElementById("applyForm").reset();
+    }).catch((err) => {
+        alert("❌ حدث خطأ، تأكد من إعدادات Webhook");
+        console.error(err);
+    });
+});
+</script>
+
+</body>
+</html>
