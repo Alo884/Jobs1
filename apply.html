@@ -29,14 +29,6 @@
             <label>يوزر ديسكورد</label><br>
             <input type="text" id="discord" required><br><br>
 
-            <!-- إضافة حقل لاختيار الوظيفة -->
-            <label>الوظيفة</label><br>
-            <select id="job" required>
-                <option value="شرطة">شرطة</option>
-                <option value="إسعاف">إسعاف</option>
-                <option value="ميكانيكي">ميكانيكي</option>
-            </select><br><br>
-
             <button class="btn" type="submit">إرسال الطلب</button>
         </form>
     </div>
@@ -45,16 +37,18 @@
 <script>
 // روابط Webhook لكل وظيفة
 const webhooks = {
-    "شرطة":  "https://discord.com/api/webhooks/1459598126678540541/mtMYNzTZESPo-W3YYErc30FddgXiAC2jZhjjCDRi-9GtWCAPDYKAYjEhYb8KhJlZPSeZ",
-    "إسعاف": "https://discord.com/api/webhooks/1459657989534257364/E6Bqf2rg3kWhftSJh3Iuot2w-ZWLgLoLum_6SyDw1GbrLn1SB3PrCtF921L_T73nfSzZ",
-    "ميكانيكي": "WEBHOOK_MECHANIC"  // استبدل "WEBHOOK_MECHANIC" بالرابط الفعلي
+    "شرطة": "https://discord.com/api/webhooks/1459598126678540541/mtMYNzTZESPo-W3YYErc30FddgXiAC2jZhjjCDRi-9GtWCAPDYKAYjEhYb8KhJlZPSeZ",
+    "إسعاف": "WEBHOOK_EMS",
+    "ميكانيكي": "WEBHOOK_MECHANIC"
 };
 
 document.getElementById("applyForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const job = document.getElementById("job").value;  // الحصول على الوظيفة
+    const job = document.getElementById("job").value;
     const data = {
+        // إذا تحب، يمكن تضع منشن للرتبة هنا
+        // content: "<@&ROLE_ADMIN>",
         embeds: [{
             title: "📥 طلب توظيف جديد",
             color: 3447003,
@@ -69,22 +63,17 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
         }]
     };
 
-    // تحقق من أن الوظيفة موجودة في webhooks
-    if (webhooks[job]) {
-        fetch(webhooks[job], {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        }).then(() => {
-            alert("✅ تم إرسال طلبك بنجاح");
-            document.getElementById("applyForm").reset();
-        }).catch((err) => {
-            alert("❌ حدث خطأ، تأكد من إعدادات Webhook");
-            console.error(err);
-        });
-    } else {
-        alert("❌ الوظيفة غير موجودة");
-    }
+    fetch(webhooks[job], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    }).then(() => {
+        alert("✅ تم إرسال طلبك بنجاح");
+        document.getElementById("applyForm").reset();
+    }).catch((err) => {
+        alert("❌ حدث خطأ، تأكد من إعدادات Webhook");
+        console.error(err);
+    });
 });
 </script>
 
