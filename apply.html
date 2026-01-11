@@ -35,6 +35,8 @@
                 <option value="شرطة">شرطة</option>
                 <option value="إسعاف">إسعاف</option>
                 <option value="ميكانيكي">ميكانيكي</option>
+                <option value="مطاعم">مطاعم</option>
+
             </select><br><br>
 
             <button class="btn" type="submit">إرسال الطلب</button>
@@ -47,7 +49,8 @@
 const webhooks = {
     "شرطة": "https://discord.com/api/webhooks/1459598126678540541/mtMYNzTZESPo-W3YYErc30FddgXiAC2jZhjjCDRi-9GtWCAPDYKAYjEhYb8KhJlZPSeZ",
     "إسعاف": "WEBHOOK_EMS",  // استبدل "WEBHOOK_EMS" برابط Webhook الخاص بك
-    "ميكانيكي": "WEBHOOK_MECHANIC" // استبدل "WEBHOOK_MECHANIC" برابط Webhook الخاص بك
+    "ميكانيكي": "WEBHOOK_MECHANIC" // استبدل "WEBHOOK_MECHANIC" برابط Webhook 
+    "مطاعم": "WEBHOOK_EMS",  // استبدل "WEBHOOK_EMS" برابط Webhook الخاص بك
 };
 
 document.getElementById("applyForm").addEventListener("submit", function(e) {
@@ -94,3 +97,4 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
