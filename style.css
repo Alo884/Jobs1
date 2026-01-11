@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Tahoma;
-    background: linear-gradient(180deg, #db9d00, #000000);
+    background: linear-gradient(180deg, #bb8603, #000000);
     color: #e5e7eb;
     direction: rtl;
 }
@@ -34,7 +34,7 @@ nav h2 {
 }
 
 .job-card {
-    background: #bb8603;
+    background: #db9d00;
     border: 1px solid #ffd700;
     border-radius: 15px;
     padding: 25px;
@@ -146,6 +146,7 @@ footer {
     margin-top: 10px;
     font-size: 1.5rem;
 }
+
 
 
 
