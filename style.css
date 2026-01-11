@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Tahoma;
-    background: linear-gradient(180deg, #000000, #000000);
+    background: linear-gradient(180deg, ##434343, #000000);
     color: #e5e7eb;
     direction: rtl;
 }
@@ -146,3 +146,4 @@ footer {
     margin-top: 10px;
     font-size: 1.5rem;
 }
+
