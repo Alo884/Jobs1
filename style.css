@@ -118,3 +118,31 @@ footer {
   transform: scale(1.1); /* تكبير بسيط عند التمرير */
   background-color: #4752C4;
 }
+
+/* --- كود تحويل الصور إلى دوائر وتوسيطها --- */
+
+.job-icon {
+    width: 120px !important;      /* حجم الصورة */
+    height: 120px !important;     /* يجب أن يكون الطول نفس العرض */
+    border-radius: 50% !important; /* هذا السطر هو الذي يجعلها دائرية */
+    object-fit: cover;            /* يمنع تمطط الصورة ويحافظ على أبعادها */
+    display: block;               /* ضروري لتوسيط الصورة */
+    margin: 0 auto 15px auto;     /* يوسط الصورة ويترك مسافة تحتها */
+    background-color: white;      /* خلفية بيضاء للشعارات */
+    border: 3px solid #f1c40f;    /* إطار ذهبي يناسب ستايل القمة */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* ظل لبروز الصورة */
+}
+
+/* لضمان أن كل محتويات البطاقة في المنتصف */
+.job-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* تحسين شكل النصوص تحت الصورة */
+.job-card h2 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
