@@ -65,38 +65,54 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
         return;
     }
 
-    const data = {
-        embeds: [{
-            title: "📥 طلب توظيف جديد",
-            color: 3447003,
-            fields: [
-                { name: "👤 الاسم", value: document.getElementById("name").value, inline: true },
-                { name: "🎂 العمر", value: document.getElementById("age").value, inline: true },
-                { name: "🎮 ديسكورد", value: document.getElementById("discord").value, inline: false },
-                { name: "💼 الوظيفة", value: job, inline: false }
-            ],
-            footer: { text: "Server Jobs System" },
-            timestamp: new Date()
-        }]
-    };
+    // --- استبدل الكود من السطر 68 بهذا الجزء ---
 
-    // إرسال البيانات إلى Webhook الخاص بالوظيفة المختارة
-    fetch(webhooks[job], {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    }).then(() => {
-        alert("✅ تم إرسال طلبك بنجاح");
-        document.getElementById("applyForm").reset();
-    }).catch((err) => {
-        alert("❌ حدث خطأ، تأكد من إعدادات Webhook");
-        console.error(err);
-    });
+// 1. تجهيز الـ Embed (النصوص)
+const embedData = {
+    embeds: [{
+        title: "📄 طلب توظيف وسيرة ذاتية",
+        color: 3447003,
+        fields: [
+            { name: "👤 الاسم", value: document.getElementById("name").value, inline: true },
+            { name: "🎂 العمر", value: document.getElementById("age").value, inline: true },
+            { name: "🎮 ديسكورد", value: document.getElementById("discord").value, inline: false },
+            { name: "💼 الوظيفة", value: job, inline: false }
+        ],
+        footer: { text: "Server Jobs System" },
+        timestamp: new Date()
+    }]
+};
+
+// 2. الحصول على الملف المرفوع
+const fileInput = document.getElementById("cv_file");
+const formData = new FormData();
+
+// نضع النصوص والملف داخل الـ FormData ليرسلهم الديسكورد معاً
+formData.append("payload_json", JSON.stringify(embedData));
+
+if (fileInput.files.length > 0) {
+    formData.append("file", fileInput.files[0]);
+} else {
+    alert("❌ يرجى إرفاق ملف الـ CV أولاً!");
+    return;
+}
+
+// 3. الإرسال إلى الـ Webhook الخاص بالوظيفة المختارة
+fetch(webhooks[job], {
+    method: "POST",
+    body: formData
+})
+.then(response => {
+    if (response.ok) {
+        alert("✅ تم إرسال السيرة الذاتية بنجاح إلى قسم " + job);
+    } else {
+        alert("❌ حدث خطأ أثناء الإرسال، تأكد من إعدادات الـ Webhook.");
+    }
+})
+.catch(error => {
+    console.error("Error:", error);
+    alert("❌ فشل الاتصال بالسيرفر.");
 });
-</script>
-
-</body>
-</html>
 
 
 
