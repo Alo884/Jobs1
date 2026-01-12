@@ -37,7 +37,9 @@
                <option value="الميكانيكي">الميكانيكي</option>
                <option value="مطاعم">مطاعم</option>
             </select><br><br>
-
+<label>📄 ارفع السيرة الذاتية (ملف PDF أو صورة):</label><br>
+<input type="file" id="cv_file" accept=".pdf,.png,.jpg,.jpeg" required><br><br>
+            
             <button class="btn" type="submit">إرسال الطلب</button>
         </form>
     </div>
@@ -113,6 +115,7 @@ fetch(webhooks[job], {
     console.error("Error:", error);
     alert("❌ فشل الاتصال بالسيرفر.");
 });
+
 
 
 
