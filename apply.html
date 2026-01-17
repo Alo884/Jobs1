@@ -23,10 +23,13 @@
             <label>الاسم داخل السيرفر</label><br>
             <input type="text" id="name" required><br><br>
 
-            <label>العمر</label><br>
+            <label>العمر الحقيقي</label><br>
             <input type="number" id="age" required><br><br>
 
             <label>يوزر ديسكورد</label><br>
+            <input type="text" id="discord" required><br><br>
+
+             <label>عدد ساعات التواجد</label><br>
             <input type="text" id="discord" required><br><br>
 
             <!-- إضافة حقل لاختيار الوظيفة -->
@@ -71,7 +74,7 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
             color: 3447003,
             fields: [
                 { name: "👤 الاسم", value: document.getElementById("name").value, inline: true },
-                { name: "🎂 العمر الحقيقي", value: document.getElementById("age").value, inline: true },
+                { name: "🎂 العمر", value: document.getElementById("age").value, inline: true },
                 { name: "🎮 ديسكورد", value: document.getElementById("discord").value, inline: false },
                 { name: "💼 الوظيفة", value: job, inline: false }
             ],
@@ -97,6 +100,7 @@ document.getElementById("applyForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
