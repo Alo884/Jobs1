@@ -7,9 +7,9 @@ body {
 }
 
 nav {
-    background: #7f6000;
+    background: #000000;
     padding: 15px 40px;
-    border-bottom: 1px solid #7f6000;
+    border-bottom: 1px solid #000000;
 }
 
 nav h2 {
